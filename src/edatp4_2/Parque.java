@@ -117,6 +117,7 @@ public class Parque {
     public void mostrarVisitantesEnAtraccionesPpales() {
         Queue<Integer> auxMR = new LinkedList<>();
         Queue<Integer> auxVM = new LinkedList<>();
+        Queue<Integer> auxPpal = new LinkedList<>();
 
         System.out.println("Visitantes en la Montaña Rusa:");
         while (!filaMontaniaRusa.isEmpty()) {
@@ -136,6 +137,17 @@ public class Parque {
         }
         while (!auxVM.isEmpty()) {
             filaVueltaAlMundo.add(auxVM.poll());
+        }
+        
+        System.out.println("Visitantes en la fila de entrada:");
+        
+        while (!filaEntrada.isEmpty()) {
+            int visitante = filaEntrada.poll();
+            System.out.println("Visitante con ID " + visitante);
+            auxPpal.add(visitante);
+        }
+        while (!auxPpal.isEmpty()) {
+            filaEntrada.add(auxPpal.poll());
         }
     }
 }

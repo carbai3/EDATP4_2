@@ -26,7 +26,9 @@ public class EDATP4_2 {
         Scanner scanner = new Scanner(System.in);
         Parque parque = new Parque();
         int opcion;
-        String continuar;
+        int cantEntrada = 0;
+        int cant = 0;
+        int visitSal;
 
         do {
             System.out.println("---Menú seleccione la opcion correspondiente---");
@@ -43,32 +45,49 @@ public class EDATP4_2 {
 
             switch (opcion) {
                 case 1:
-                    System.out.println("Se ingresan los visitantes...");
-                    for (int i = 1; i <= 17; i++) {
-                        if (i != 14) parque.registrarEntrada(i);
+
+                    if (cantEntrada == 0) {
+                        System.out.println("Cuantos quiere ingresar?");
+                        cantEntrada = scanner.nextInt();
+                        for (int i = 1; i <= cantEntrada; i++) {
+                            System.out.println("Se ingresan los visitantes...");
+                            if (i != 14) {
+                                parque.registrarEntrada(i);
+                            }
+                        }
+                    } else {
+                        System.out.println("Cuantos quiere ingresar? Recuerde que ya hay " + cantEntrada + " visitantes");
+                        int aux = cantEntrada;
+                        cantEntrada = scanner.nextInt();
+                        for (int i = aux + 1; i <= aux + cantEntrada; i++) {
+                            System.out.println("Se ingresan los visitantes...");
+                            if (i != 14) {
+                                parque.registrarEntrada(i);
+                            }
+                        }
                     }
-                    parque.registrarEntrada(5);
+                    cant = cant + cantEntrada;
+
                     break;
                 case 2:
                     System.out.println("Salida de Visitantes del parque");
-                    parque.registroSalida(5);
-                    parque.registroSalida(3);
+                    System.out.println("Que visitante quiere salir?");
+                    visitSal = scanner.nextInt();
+                    if (visitSal < cant) {
+                        parque.registroSalida(visitSal);
+                    }else{
+                        System.out.println("El ID no existe");
+                    }
                     break;
                 case 4:
                     System.out.println("Ingreso a la Atraccion Montaña Rusa");
                     parque.entradaAtraccionesPopulares(6, 1);
                     parque.entradaAtraccionesPopulares(4, 1);
                     parque.entradaAtraccionesPopulares(1, 1);
-                    parque.entradaAtraccionesPopulares(10, 1);
-                    parque.entradaAtraccionesPopulares(11, 1);
                     break;
                 case 5:
                     System.out.println("Ingreso a la Atraccion Vuelta al Mundo");
-                    parque.entradaAtraccionesPopulares(12, 2);
-                    parque.entradaAtraccionesPopulares(14, 2);
-                    parque.entradaAtraccionesPopulares(13, 2);
-                    parque.entradaAtraccionesPopulares(15, 2);
-                    parque.entradaAtraccionesPopulares(16, 2);
+                    parque.entradaAtraccionesPopulares(2, 2);
                     break;
                 case 6:
                     System.out.println("Visitantes en las atracciones populares:");
@@ -87,8 +106,6 @@ public class EDATP4_2 {
                     System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
                     break;
             }
-        } while (opcion !=8);
+        } while (opcion != 8);
     }
 }
-
-
