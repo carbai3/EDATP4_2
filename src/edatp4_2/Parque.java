@@ -113,7 +113,29 @@ public class Parque {
                 }
             }
         }
-        System.out.println("El visitante con ID " + idVisitante 
-        + " se encuentra en el parque y no en las atracciones populares");
+    }
+    public void mostrarVisitantesEnAtraccionesPpales() {
+        Queue<Integer> auxMR = new LinkedList<>();
+        Queue<Integer> auxVM = new LinkedList<>();
+
+        System.out.println("Visitantes en la Montaña Rusa:");
+        while (!filaMontaniaRusa.isEmpty()) {
+            int visitante = filaMontaniaRusa.poll();
+            System.out.println("Visitante con ID " + visitante);
+            auxMR.add(visitante);
+        }
+        while (!auxMR.isEmpty()) {
+            filaMontaniaRusa.add(auxMR.poll());
+        }
+
+        System.out.println("Visitantes en la Vuelta al Mundo:");
+        while (!filaVueltaAlMundo.isEmpty()) {
+            int visitante = filaVueltaAlMundo.poll();
+            System.out.println("Visitante con ID " + visitante);
+            auxVM.add(visitante);
+        }
+        while (!auxVM.isEmpty()) {
+            filaVueltaAlMundo.add(auxVM.poll());
+        }
     }
 }
