@@ -60,7 +60,7 @@ public class Parque {
         }// eliminamos las personas en la montaña rusa cuando salen del parque
         int contMR = filaMontaniaRusa.size();
         while ((!filaMontaniaRusa.isEmpty()) && contador != 0) {
-            if (idVisitante == filaEntrada.peek()) {
+            if (idVisitante == filaMontaniaRusa.peek()) {
                 filaSalida.add(idVisitante);
                 filaEntrada.poll();
                 filaMontaniaRusa.poll();
@@ -72,9 +72,9 @@ public class Parque {
             }
             contMR--;
         }// eliminamos las personas en la vuelta al mundo cuando salen del parque
-                int contVM = filaVueltaAlMundo.size();
+        int contVM = filaVueltaAlMundo.size();
         while ((!filaVueltaAlMundo.isEmpty()) && contador != 0) {
-            if (idVisitante == filaEntrada.peek()) {
+            if (idVisitante == filaVueltaAlMundo.peek()) {
                 filaSalida.add(idVisitante);
                 filaEntrada.poll();
                 filaVueltaAlMundo.poll();
@@ -87,16 +87,33 @@ public class Parque {
             contMR--;
         }
     }
+    
     // NroJuego = 1, Montaña Rusa  y NroJuego != 1 , Vuelta al mundo
 
-    public void entradaAtraccionesPopulares(int idVisitante,int NroJuego) {
-        if(NroJuego==1){
-        filaMontaniaRusa.add(idVisitante);
-        System.out.println("Visitante con ID " + idVisitante + "entro Montaña Rusa"  );
-    }else{
+    public void entradaAtraccionesPopulares(int idVisitante, int NroJuego) {
+        if (NroJuego == 1) {
+            filaMontaniaRusa.add(idVisitante);
+            System.out.println("Visitante con ID " + idVisitante + "entro Montaña Rusa");
+        } else {
             filaVueltaAlMundo.add(idVisitante);
-            System.out.println("Visitante con ID " + idVisitante + "entro Vuelta al mundo"  );
+            System.out.println("Visitante con ID " + idVisitante + "entro Vuelta al mundo");
         }
-    
-}
+
+    }
+
+    public void buscarVisitante(int idVisitante) {
+        if (filaEntrada.contains(idVisitante)) {
+            System.out.println("El visitante con ID " + idVisitante + " se encuentra en el parque");
+        } else {
+            if (filaMontaniaRusa.contains(idVisitante)) {
+                System.out.println("El visitante con ID " + idVisitante + " se encuentra en la MOntaña Rusa");
+            } else {
+                if (filaVueltaAlMundo.contains(idVisitante)) {
+                    System.out.println("El visitante con ID " + idVisitante + " se encuentra en la Vuelta al Mundo");
+                }
+            }
+        }
+        System.out.println("El visitante con ID " + idVisitante 
+        + " se encuentra en el parque y no en las atracciones populares");
+    }
 }
